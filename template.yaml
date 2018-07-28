@@ -1,0 +1,64 @@
+# TODO: Restful path parameters set up for reference. Remove from path as functions are added to use ajax calls.
+AWSTemplateFormatVersion : '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: no-password-authorization-gateway.
+
+Resources:
+  Authorize:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: authorize.handler
+      Runtime: nodejs8.10
+      Events:
+        AuthorizeUser:
+          Type: Api
+          Properties:
+            Path: /user/{id}
+            Method: post
+        AuthorizeApplication:
+          Type: Api
+          Properties:
+            Path: /application/{id}
+            Method: post
+  Add:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: add.handler
+      Runtime: nodejs8.10
+      Events:
+        User:
+          Type: Api
+          Properties:
+            Path: /user/{email}/{mobile}
+            Method: post
+        Application:
+          Type: Api
+          Properties:
+            Path: /application/{name}/{email}/{mobile}
+            Method: post
+        Role:
+          Type: Api
+          Properties:
+            Path: /role/{admid}/{uid}/{aid}/{role}
+            Method: post
+  Remove:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: json-data.handler
+      Runtime: nodejs8.10
+      Events:
+        User:
+          Type: Api
+          Properties:
+            Path: /user/{admid}/{uid}
+            Method: post
+        Application:
+          Type: Api
+          Properties:
+            Path: /application/{name}/{admid}
+            Method: post
+        Role:
+          Type: Api
+          Properties:
+            Path: /role/{admid}/{uid}/{aid}/{role}
+            Method: post
