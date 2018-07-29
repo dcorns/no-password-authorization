@@ -30,7 +30,22 @@
  *                        )
  *                      }
  */
+const aws = require('aws-sdk');
+const validateInput = require('./modules/validate-input');
+const config = require('./config');
+const db = new aws.DynamoDB.DocumentClient({region: config.DBREGION});
 exports.handler = (event, context, cb) => {
+  if(event.body && validateInput('add', event.body)){
+    console.log(event.body);
+    if(event.body.add === 'user'){
+      console.log('Adding main user');
+      if(event.body.data){
 
-  cb(null, {body: event.body});
+      }
+    }
+    cb(null, {body: event.body});
+  }
+  else{
+    cb({body: 'Must provide valid Input'}, null);
+  }
 };
