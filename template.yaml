@@ -29,12 +29,12 @@ Resources:
         User:
           Type: Api
           Properties:
-            Path: /user/{email}/{mobile}
+            Path: /user/{aid}/{admid}/{email}/{mobile}
             Method: post
         Application:
           Type: Api
           Properties:
-            Path: /application/{name}/{email}/{mobile}
+            Path: /application/{name}/{uid}
             Method: post
         Role:
           Type: Api
@@ -44,7 +44,7 @@ Resources:
   Remove:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: json-data.handler
+      Handler: remove.handler
       Runtime: nodejs8.10
       Events:
         User:
