@@ -5,9 +5,11 @@
  * MIT Licensed
  */
 'use strict';
+const generateGuid = require('./generate-guid');
 module.exports = (email, aid) => {
   if(!aid) {
     //check for user in User table
+    const testId = generateGuid(email);
 
   }
   else{
