@@ -3,3 +3,6 @@ A service for authorizing users without a password using AWS Lambda and AWS dyna
 ### Data Structures
 #### Main dynamodb tables:
 User, 
+### Testing
+##### Add user to main database:
+curl -H "Content-Type: application/jsonon/json" -d '{"add":"user","email":"bob@gmail.com"}' http://localhost:3000/add
