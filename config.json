@@ -1,4 +1,5 @@
 {
   "DBREGION":"us-west-2",
-  "SECRET": "secret"
+  "SECRET": "x2345yzISWLJW$32a%%kHn00",
+  "awsLocalEndpoint": "http://172.16.123.1:8000"
 }

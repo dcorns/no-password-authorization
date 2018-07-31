@@ -25,18 +25,44 @@
 
 const validateInput = require('./modules/validate-input');
 const userExists = require('./modules/user-exists');
+const addUser = require('./modules/add-user');
 exports.handler = (event, context, cb) => {
   if(event.body){
     const data = JSON.parse(event.body);
     if(validateInput('add', data)){
       console.log('add:validation passed');
       if(data.add === 'user' && !data.aid){
-        if(userExists(data.email)){
-          console.log('add:User already in database');
-        }
-        else{
-          console.log('Adding main user');
-        }
+        userExists(data.email)
+          .then((res1) => {
+            console.log('add: response from userExists');
+            console.log(res1);
+            if(!res1.ID){
+              console.log('add: Adding User!');
+              addUser(data.email)
+                .then((res) => {
+                  cb(null, {body: {
+                      result: 'user added',
+                      user: res,
+                    }
+                  });
+                })
+                .catch((err) => {
+                  cb(err, null);
+                });
+            }
+            else{
+              console.log('add: User already exists');
+              cb(null, {body: {
+                  result: 'user already exists',
+                  user: res1,
+                }
+              });
+            }
+          })
+          .catch((err) => {
+            console.log('add: ERROR checking for existing user');
+            console.log(err);
+          });
       }
       cb(null, {body: event.body});
     }

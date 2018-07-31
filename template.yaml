@@ -25,6 +25,7 @@ Resources:
     Properties:
       Handler: add.handler
       Runtime: nodejs8.10
+      Timeout: 30
       Events:
         User:
           Type: Api

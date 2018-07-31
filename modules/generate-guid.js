@@ -6,9 +6,8 @@
  */
 'use strict';
 const crypto = require('crypto');
-const config = require('../config');
-module.exports = (email) => {
-  return crypto.createHmac('sha256', config.SECRET)
+module.exports = (email, secret) => {
+  return crypto.createHmac('sha256', secret)
     .update(email)
     .digest('hex');
 };
