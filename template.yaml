@@ -29,7 +29,7 @@ Resources:
         User:
           Type: Api
           Properties:
-            Path: /user/{aid}/{admid}/{email}/{mobile}
+            Path: /add
             Method: post
         Application:
           Type: Api

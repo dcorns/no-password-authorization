@@ -7,7 +7,7 @@
 'use strict';
 const aws = require('aws-sdk');
 const config = require('../config');
-const db = new aws.DynamoDB.DocumentClient({region: config.DBREGION});
+const db = new aws.DynamoDB.DocumentClient({region: config.DBREGION, endpoint: 'http://localhost:3000'});
 module.exports = (guid, userTableName) => {
   const params = {
     TableName: userTableName,
