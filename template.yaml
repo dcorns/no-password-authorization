@@ -51,7 +51,7 @@ Resources:
         User:
           Type: Api
           Properties:
-            Path: /user/{admid}/{uid}
+            Path: /remove
             Method: post
         Application:
           Type: Api

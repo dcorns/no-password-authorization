@@ -24,7 +24,7 @@
  */
 
 const validateInput = require('./modules/validate-input');
-const userExists = require('./modules/user-exists');
+const getUserByEmail = require('./modules/get-user-by-email');
 const addUser = require('./modules/add-user');
 exports.handler = (event, context, cb) => {
   if(event.body){
@@ -32,17 +32,17 @@ exports.handler = (event, context, cb) => {
     if(validateInput('add', data)){
       console.log('add:validation passed');
       if(data.add === 'user' && !data.aid){
-        userExists(data.email)
+        getUserByEmail(data.email)
           .then((res1) => {
-            console.log('add: response from userExists');
+            console.log('add: response from getUserByEmail');
             console.log(res1);
             if(!res1.ID){
               console.log('add: Adding User!');
               addUser(data.email)
-                .then((res) => {
+                .then((user) => {
                   cb(null, {body: {
                       result: 'user added',
-                      user: res,
+                      user,
                     }
                   });
                 })

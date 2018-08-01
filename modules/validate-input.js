@@ -12,12 +12,26 @@ module.exports = (dataType, dataIn) => {
         return false;
       }
       if(dataIn.add === 'user'){
-        if(!dataIn.email && !dataIn.mobile) return false;
+        if(!dataIn.email) return false;
       }
       if(dataIn.add === 'application'){
         if(!dataIn.uid || !dataIn.name) return false;
       }
-      if(dataIn.add === 'name'){
+      if(dataIn.add === 'role'){
+        if(!dataIn.admid || !dataIn.uid || !dataIn.role || !dataIn.aid) return false;
+      }
+      return true;
+    case 'remove':
+      if(!dataIn.remove) {
+        return false;
+      }
+      if(dataIn.remove === 'user'){
+        if(!dataIn.email) return false;
+      }
+      if(dataIn.remove === 'application'){
+        if(!dataIn.uid || !dataIn.name) return false;
+      }
+      if(dataIn.remove === 'role'){
         if(!dataIn.admid || !dataIn.uid || !dataIn.role || !dataIn.aid) return false;
       }
       return true;

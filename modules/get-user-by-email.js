@@ -1,5 +1,5 @@
 /**
- * user-exists
+ * get-user-by-email
  * Created by dcorns on 7/29/18
  * Copyright © 2018 Dale Corns
  * MIT Licensed
@@ -14,7 +14,6 @@ module.exports = (email, aid) => {
     const testId = generateGuid(email, config.SECRET);
     console.log('user-exists: testId= ',testId);
     return new Promise((resolve, reject) => {
-      console.log('user-exists: Instantiating promise before get user');
       getUser(testId, 'Users' )
         .then((res) => {
           console.log('user-exists: Check Completed');
@@ -27,6 +26,6 @@ module.exports = (email, aid) => {
     });
   }
   else{
-    //check for user in applications user table
+    console.log('user per application not implemented yet');
   }
 };

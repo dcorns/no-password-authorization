@@ -8,6 +8,7 @@
 const aws = require('aws-sdk');
 const config = require('../config');
 const generateGuid = require('./generate-guid');
+const getUser = require('./get-user');
 aws.config.update({
   endpoint: config.awsLocalEndpoint
 });
@@ -30,10 +31,16 @@ module.exports = (email, aid) => {
           reject(err);
         }
       });
-      resolve(putParams.Item);
+      getUser(guid, 'Users')
+        .then(usr => {
+          resolve(usr);
+        })
+        .catch(err => {
+          reject(err);
+        });
     });
   }
   else {
-    //add user to specified application
+    console.log('user per application not yet implemented');
   }
 };
