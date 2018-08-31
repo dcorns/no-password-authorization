@@ -16,6 +16,7 @@ module.exports = (guid, userTableName) => {
     TableName: userTableName,
     Key: {'ID': guid},
   };
+  console.log("[get-user]: params: " + params.TableName + "  params.Key.ID: " + params.Key.ID);
   return new Promise ((resolve, reject) => {
     console.log('get-user: running db.get');
     try{

@@ -8,3 +8,8 @@ User,
 curl -H "Content-Type: application/jsonon/json" -d '{"add":"user","email":"bob@gmail.com"}' http://localhost:3000/add
 ##### Remove user from main database:
 curl -H "Content-Type: application/jsonon/json" -d '{"remove":"user","email":"bob@gmail.com"}' http://localhost:3000/remove
+
+##### Dev Notes:
+Only for me while in development:<br/>
+Start lambda: ```sam local start-api```<br/>
+Start DB: ```dynamo```
