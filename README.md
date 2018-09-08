@@ -16,6 +16,8 @@ Start lambda: ```sam local start-api```<br/>
 Use the aws cli to access the dynamoDB directly during development
 ```$bash
 aws dynamodb create-table --table-name Users --attribute-definitions AttributeName=ID,AttributeType=S --key-schema AttributeName=ID,KeyType=HASH --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 --endpoint-url http://localhost:8000
+aws dynamodb put-item --table-name Users --item '{"ID":{"S":"uidHERE"}, "EMAIL":{"S":"bob@hope.com"}}' --return-consumed-capacity TOTAL
+aws dynamodb delete-item --table-name Users --key '{"ID":{"S":"uidHERE"}}' --endpoint-url http://localhost:8000
 aws dynamodb list-tables --endpoint-url http://localhost:8000
 aws dynamodb describe-table --table-name Users --endpoint-url http://localhost:8000
 aws dynamodb scan --table-name Users --endpoint-url http://localhost:8000
